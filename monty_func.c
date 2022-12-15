@@ -42,7 +42,7 @@ void read_file(char *filename, stack_t *stack)
 			line_number++;
 			continue;
 		}
-		op_cod = get_opcode(line_bu);
+		op_cod = get_opcode(line_buf);
 		if (op_code == NULL)
 		{
 			printf("L%d: Can't open file %s", line_number, line_buf);

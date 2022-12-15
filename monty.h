@@ -65,6 +65,7 @@ void free_dlistint(stack_t *head);
 instruction_t get_opcode(char *line);
 char *parse_line(char *str);
 void exit_monty(stack_t **stack);
+int isnumber(char *str);
 
 
 #endif
