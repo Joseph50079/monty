@@ -13,10 +13,11 @@ int main(int ac, char **argv)
 
 	if (ac != 2)
 	{
-		print("USAGE: monty file");
+		printf("USAGE: monty file");
 		exit(EXIT_FAILURE);
 	}
 
-	read_file(argv[1], stack);
-	free_dlistint(stack);
+	read_file(argv[1], &stack);
+	exit_monty(&stack);
+	return (0);
 }

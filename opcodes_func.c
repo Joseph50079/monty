@@ -9,6 +9,7 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *arg;
+	int n;
 
 	arg = strtok(NULL, "\n ");
 	if (arg == NULL)
@@ -18,10 +19,10 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	if (isnumber(arg) == 1 && arg != NULL)
 	{
-		stack_data = atoi(arg);
+		n = atoi(arg);
 	}
 
-	add_dnodeint(stack, line_number);
+	add_dnodeint(stack, n);
 }
 
 
@@ -31,7 +32,7 @@ void _push(stack_t **stack, unsigned int line_number)
  * @line_number: line of opecode position
  */
 
-void _pall(stack_t **stack, unsigned int line_number__attribute__((unused)))
+void _pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *ptr = *stack;
 
@@ -41,7 +42,7 @@ void _pall(stack_t **stack, unsigned int line_number__attribute__((unused)))
 	}
 	while (ptr != NULL)
 	{
-		print("%d\n", ptr->n);
+		printf("%d\n", ptr->n);
 		ptr = ptr->next;
 	}
 }
@@ -104,27 +105,3 @@ void _swap(stack_t **stack, unsigned int line_number)
 	ptr->n = ptr->next->n;
 	ptr->next->n = temp;
 }
-
-/**
- * _add - function add last top two in the stack
- * @stack: stack pointer
- * @line_number: line number in opcode occurance
- */
-
-void _add(stack_t **stack, unsigned int line_number)
-{
-
-
-/**
- *
- */
-void _nop(stack_t **stack, unsigned int line_number);
-
-/**
- *
- */
-
-void _sub(stack_t **stack, unsigned int line_number);
-
-
-

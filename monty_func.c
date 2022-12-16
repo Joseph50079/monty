@@ -7,9 +7,9 @@
 
 void exit_monty(stack_t **stack)
 {
-	if (stack == NULL)
+	if (*stack == NULL)
 		return;
-	free_dlistint(stack);
+	free_dlistint(*stack);
 	exit(EXIT_FAILURE);
 }
 /**
@@ -18,34 +18,34 @@ void exit_monty(stack_t **stack)
  * @stack: read from the top of the stack
  */
 
-void read_file(char *filename, stack_t *stack)
+void read_file(char *filename, stack_t **stack)
 {
 	ssize_t fd;
 	size_t n = 0;
 	FILE *file = fopen(filename, "r");
 	char *buf = NULL;
-	instruction_t op_code;
+	instruct_f op_code;
 	char *line_buf;
 	unsigned int line_number = 1;
 
 	if (!file)
 	{
-		print("Error: Can't open file %s\n", filename);
+		printf("Error: Can't open file %s\n", filename);
 		exit_monty(stack);
 	}
 
-	while ((fd = getline(&buf, n, file)) != 0)
+	while ((fd = getline(&buf, &n, file)) != 0)
 	{
 		line_buf = parse_line(buf);
-		if (line_buf == NULL || line_buf =='#')
-		{ 
+		if (line_buf == NULL || line_buf[0] == '#')
+		{
 			line_number++;
 			continue;
 		}
-		op_cod = get_opcode(line_buf);
+		op_code = get_opcode(line_buf);
 		if (op_code == NULL)
 		{
-			printf("L%d: Can't open file %s", line_number, line_buf);
+			printf("L%d: Can't open file %s\n", line_number, line_buf);
 			exit_monty(stack);
 		}
 		op_code(stack, line_number);
@@ -63,7 +63,7 @@ void read_file(char *filename, stack_t *stack)
  * Return: return's the right opcode
  */
 
-instruction_t get_opcode(char *line)
+instruct_f get_opcode(char *line)
 {
 	int i = 0;
 
@@ -84,10 +84,10 @@ instruction_t get_opcode(char *line)
 		{"rotl", _rotl},
 		{"rotr", _rotr},
 		{"stack", _stack},
-		{"queues" _queues}
+		{"queue", _queue}
 	};
 
-	while (instruct[i].f != NULL && strcmp(instruct[i], line) != 0)
+	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, line) != 0)
 	{
 		i++;
 	}
@@ -113,4 +113,33 @@ char *parse_line(char *str)
 	token = strtok(str, "\n ");
 
 	return (token);
+}
 
+
+
+/**
+ * isnumber - checks if a string is a number
+ * @str: string being passed
+ *
+ * Return: returns 1 if string is a number, 0 otherwise
+ */
+int isnumber(char *str)
+{
+	unsigned int i;
+
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[0] == '-')
+		{
+			i++;
+			continue;
+		}
+		if (!isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
