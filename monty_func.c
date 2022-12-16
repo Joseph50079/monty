@@ -34,7 +34,7 @@ void read_file(char *filename, stack_t **stack)
 		exit_monty(stack);
 	}
 
-	while ((fd = getline(&buf, &n, file)) != 0)
+	while ((fd = getline(&buf, &n, file)) != -1)
 	{
 		line_buf = parse_line(buf);
 		if (line_buf == NULL || line_buf[0] == '#')
