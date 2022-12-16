@@ -13,7 +13,7 @@ int main(int ac, char **argv)
 
 	if (ac != 2)
 	{
-		printf("USAGE: monty file");
+		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 

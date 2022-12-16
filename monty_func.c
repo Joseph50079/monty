@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * exit_monty - exit failure and free stack
@@ -20,7 +21,7 @@ void exit_monty(stack_t **stack)
 
 void read_file(char *filename, stack_t **stack)
 {
-	ssize_t fd;
+	int fd, close;
 	size_t n = 0;
 	FILE *file = fopen(filename, "r");
 	char *buf = NULL;
@@ -53,6 +54,9 @@ void read_file(char *filename, stack_t **stack)
 	}
 	free(buf);
 	exit_monty(stack);
+	close = fclose(file);
+	if (close == -1)
+		exit (-1);
 
 }
 
@@ -76,15 +80,7 @@ instruct_f get_opcode(char *line)
 		{"add", _add},
 		{"nop", _nop},
 		{"sub", _sub},
-		{"div", _div},
-		{"mul", _mul},
-		{"mod", _mod},
-		{"pchar", _pchar},
-		{"pstr", _pstr},
-		{"rotl", _rotl},
-		{"rotr", _rotr},
-		{"stack", _stack},
-		{"queue", _queue}
+		{"div", _div}
 	};
 
 	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, line) != 0)
