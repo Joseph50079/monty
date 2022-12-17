@@ -10,7 +10,8 @@
 int main(int ac, char **argv)
 {
 	stack_t *stack;
-
+	
+	stack = NULL;
 	if (ac != 2)
 	{
 		printf("USAGE: monty file\n");

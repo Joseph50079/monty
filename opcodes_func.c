@@ -11,17 +11,17 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *arg;
 	int n;
 
-	arg = strtok(NULL, "\n ");
-	if (arg == NULL)
-	{
-		printf("L%d: usage: push integer\n", line_number);
-		exit_monty(stack);
-	}
+	arg = strtok(NULL, "\t ");
+
 	if (isnumber(arg) == 1 && arg != NULL)
 	{
 		n = atoi(arg);
 	}
-
+	else
+	{
+		printf("L%d: usage: push integer\n", line_number);
+		exit_monty(stack);
+	}
 	add_dnodeint(stack, n);
 }
 

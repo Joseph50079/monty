@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
 
 /**
  * exit_monty - exit failure and free stack
@@ -8,11 +7,11 @@
 
 void exit_monty(stack_t **stack)
 {
-	if (*stack == NULL)
-		return;
-	free_dlistint(*stack);
+	if (*stack != NULL)
+		free_dlistint(*stack);
 	exit(EXIT_FAILURE);
 }
+
 /**
  * read_file - function reads files and the stack
  * @filename: path of file
@@ -21,13 +20,14 @@ void exit_monty(stack_t **stack)
 
 void read_file(char *filename, stack_t **stack)
 {
-	int fd, close;
+	ssize_t fd;
+	int close;
 	size_t n = 0;
-	FILE *file = fopen(filename, "r");
 	char *buf = NULL;
 	instruct_f op_code;
 	char *line_buf;
 	unsigned int line_number = 1;
+	FILE *file = fopen(filename, "r");
 
 	if (!file)
 	{
@@ -52,8 +52,8 @@ void read_file(char *filename, stack_t **stack)
 		op_code(stack, line_number);
 		line_number++;
 	}
-	free(buf);
-	exit_monty(stack);
+	if (buf != NULL)
+		free(buf);
 	close = fclose(file);
 	if (close == -1)
 		exit (-1);
