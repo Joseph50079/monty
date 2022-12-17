@@ -52,11 +52,11 @@ void read_file(char *filename, stack_t **stack)
 		op_code(stack, line_number);
 		line_number++;
 	}
-	if (buf != NULL)
-		free(buf);
+
+	free(buf);
 	close = fclose(file);
 	if (close == -1)
-		exit (-1);
+		exit(-1);
 
 }
 

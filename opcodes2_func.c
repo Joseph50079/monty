@@ -21,6 +21,7 @@ void _add(stack_t **stack, unsigned int line_number
 	sum = temp + ptr->next->n;
 	ptr = ptr->next;
 	ptr->n = sum;
+	_pop(stack, line_number);
 }
 
 /**
@@ -29,7 +30,7 @@ void _add(stack_t **stack, unsigned int line_number
  * @line_number: line of opcode occurance
  */
 
-void _nop(stack_t **stack __attribute__((unused)), unsigned int line_number __attribute__((unused)))
+void _nop(stack_t **stack UNUSED, unsigned int line_number UNUSED)
 {
 	;
 }
@@ -54,6 +55,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 	sum = temp - ptr->next->n;
 	ptr = ptr->next;
 	ptr->n = sum;
+	_pop(stack, line_number);
 }
 
 
@@ -82,4 +84,5 @@ void _div(stack_t **stack, unsigned int line_number)
 	sum = temp / ptr->next->n;
 	ptr = ptr->next;
 	ptr->n = sum;
+	_pop(stack, line_number);
 }

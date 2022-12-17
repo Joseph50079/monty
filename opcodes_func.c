@@ -12,17 +12,17 @@ void _push(stack_t **stack, unsigned int line_number)
 	int n;
 
 	arg = strtok(NULL, "\n ");
-
-	if (isnumber(arg) == 1)
+	n = 0;
+	if (isnumber(arg) == 1 && arg != NULL)
 	{
 		n = atoi(arg);
+		add_dnodeint(stack, n);
 	}
 	else
 	{
 		printf("L%d: usage: push integer\n", line_number);
 		exit_monty(stack);
 	}
-	add_dnodeint(stack, n);
 }
 
 
@@ -81,8 +81,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 		exit_monty(stack);
 	}
 
-	ptr = ptr->next;
-	*stack = ptr;
+	delete_dnodeint_at_index(stack, 0);
 }
 
 /**

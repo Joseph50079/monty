@@ -2,6 +2,7 @@
 #define MONTY_H
 
 #define  _GNU_SOURCE
+#define UNUSED __attribute__((unused))
 
 #include <stdio.h>
 #include <string.h>
