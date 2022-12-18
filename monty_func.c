@@ -64,6 +64,7 @@ void read_file(char *filename, stack_t **stack)
 /**
  * get_opcode - get opcode and return the suitable function
  * @line: line of monty opcode
+ * @line_number: line of where code occured in file
  * Return: return's the right opcode
  */
 
@@ -82,7 +83,7 @@ instruct_f get_opcode(char *line, unsigned int line_number)
 		{"sub", _sub},
 		{"div", _div},
 		{NULL, NULL}
-	}; 
+	};
 
 	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, line) != 0)
 	{
