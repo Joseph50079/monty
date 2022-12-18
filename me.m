@@ -5,7 +5,7 @@ pall
 push 1234
 push 10
 pall
-hi
+#hi
 add
 pall
 pop

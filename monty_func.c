@@ -113,7 +113,7 @@ char *parse_line(char *str)
 	{
 		return (NULL);
 	}
-	token = strtok(str, "\n ");
+	token = strtok(str, "\n\t ");
 
 	return (token);
 }
