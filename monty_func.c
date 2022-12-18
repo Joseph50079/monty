@@ -43,10 +43,10 @@ void read_file(char *filename, stack_t **stack)
 			line_number++;
 			continue;
 		}
-		op_code = get_opcode(line_buf);
-		if (op_code == NULL)
+		op_code = get_opcode(line_buf, line_number);
+		if (!op_code)
 		{
-			fprintf(stderr, "L%d: Can't open file %s\n", line_number, line_buf);
+			fprintf(stderr, "Error: Can't open file %s\n", line_buf);
 			exit_monty(stack);
 		}
 		op_code(stack, line_number);
@@ -67,7 +67,7 @@ void read_file(char *filename, stack_t **stack)
  * Return: return's the right opcode
  */
 
-instruct_f get_opcode(char *line)
+instruct_f get_opcode(char *line, unsigned int line_number)
 {
 	int i = 0;
 
@@ -80,12 +80,18 @@ instruct_f get_opcode(char *line)
 		{"add", _add},
 		{"nop", _nop},
 		{"sub", _sub},
-		{"div", _div}
-	};
+		{"div", _div},
+		{NULL, NULL}
+	}; 
 
 	while (instruct[i].f != NULL && strcmp(instruct[i].opcode, line) != 0)
 	{
 		i++;
+	}
+	if (instruct[i].f == NULL)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, line);
+		exit(EXIT_FAILURE);
 	}
 
 	return (instruct[i].f);
