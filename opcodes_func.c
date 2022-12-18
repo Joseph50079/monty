@@ -20,7 +20,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		printf("L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit_monty(stack);
 	}
 }
@@ -42,7 +42,7 @@ void _pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	}
 	while (ptr != NULL)
 	{
-		printf("%d\n", ptr->n);
+		fprintf(stdout, "%d\n", ptr->n);
 		ptr = ptr->next;
 	}
 }
@@ -59,10 +59,10 @@ void _pint(stack_t **stack, unsigned int line_number)
 
 	if (ptr == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit_monty(stack);
 	}
-	printf("%d\n", ptr->n);
+	fprintf(stdout, "%d\n", ptr->n);
 }
 /**
  * _pop - pop's ooout the first element in stack
@@ -77,7 +77,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 
 	if (ptr == NULL)
 	{
-		printf("L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit_monty(stack);
 	}
 
@@ -97,7 +97,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 
 	if (ptr == NULL || ptr->next == NULL)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit_monty(stack);
 	}
 	temp = ptr->n;

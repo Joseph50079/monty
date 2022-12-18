@@ -31,7 +31,7 @@ void read_file(char *filename, stack_t **stack)
 
 	if (!file)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit_monty(stack);
 	}
 
@@ -46,7 +46,7 @@ void read_file(char *filename, stack_t **stack)
 		op_code = get_opcode(line_buf);
 		if (op_code == NULL)
 		{
-			printf("L%d: Can't open file %s\n", line_number, line_buf);
+			fprintf(stderr, "L%d: Can't open file %s\n", line_number, line_buf);
 			exit_monty(stack);
 		}
 		op_code(stack, line_number);
