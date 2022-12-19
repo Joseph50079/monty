@@ -11,7 +11,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *arg;
 	int n;
 
-	arg = strtok(NULL, "\n ");
+	arg = strtok(NULL, "\n\t ");
 	n = 0;
 	if (isnumber(arg) == 1 && arg != NULL)
 	{
