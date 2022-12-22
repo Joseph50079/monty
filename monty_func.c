@@ -5,11 +5,11 @@
  * @stack: stack pointer
  */
 
-void exit_monty(stack_t **stack)
+int exit_monty(stack_t **stack)
 {
 	if (*stack != NULL)
 		free_dlistint(*stack);
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
 
 /**
@@ -18,7 +18,7 @@ void exit_monty(stack_t **stack)
  * @stack: read from the top of the stack
  */
 
-void read_file(char *filename, stack_t **stack)
+int read_file(char *filename, stack_t **stack)
 {
 	ssize_t fd;
 	int close;
@@ -57,7 +57,7 @@ void read_file(char *filename, stack_t **stack)
 	close = fclose(file);
 	if (close == -1)
 		exit(-1);
-
+	return (EXIT_SUCCESS);
 }
 
 
