@@ -18,7 +18,7 @@ void _add(stack_t **stack, unsigned int line_number
 		exit_monty(stack);
 	}
 	temp = ptr->n;
-	sum = temp + ptr->next->n;
+	sum = ptr->next->n + temp;
 	ptr = ptr->next;
 	ptr->n = sum;
 	_pop(stack, line_number);
@@ -52,7 +52,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 		exit_monty(stack);
 	}
 	temp = ptr->n;
-	sum = temp - ptr->next->n;
+	sum = ptr->next->n / temp;
 	ptr = ptr->next;
 	ptr->n = sum;
 	_pop(stack, line_number);
@@ -81,8 +81,11 @@ void _div(stack_t **stack, unsigned int line_number)
 		exit_monty(stack);
 	}
 	temp = ptr->n;
-	sum = temp / ptr->next->n;
+	sum = ptr->next->n / temp;
 	ptr = ptr->next;
 	ptr->n = sum;
 	_pop(stack, line_number);
 }
+
+/**
+ * 
