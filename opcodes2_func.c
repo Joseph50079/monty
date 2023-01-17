@@ -88,4 +88,25 @@ void _div(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * 
+ * _mul - multiply from top of stack
+ * @stack: stack pointer
+ * @line_number: line of oopcode position
+ */
+
+ void _mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr = *stack;
+	int sum, temp;
+
+	if (ptr == NULL || ptr->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		exit_monty(stack);
+	}
+	
+	temp = ptr->n;
+	sum = ptr->next->n * temp;
+	ptr = ptr->next;
+	ptr->n = sum;
+	_pop(stack, line_number);
+}
