@@ -9,6 +9,7 @@
  void _mod(stack_t **stack, unsigned int line_number)
  {
     stack_t *ptr = *stack;
+    int sum, temp;
 
     if (ptr == NULL || ptr->next == NULL)
     {
@@ -18,10 +19,10 @@
     if (ptr->n == 0)
     {
         fprintf(stderr, "L%d: division by zero\n", line_number);
-		exit_monty(stack);
+	exit_monty(stack);
     }
 
-    temp = ptr->n;
+    	temp = ptr->n;
 	sum = ptr->next->n % temp;
 	ptr = ptr->next;
 	ptr->n = sum;
