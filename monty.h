@@ -45,6 +45,12 @@ typedef struct instruction_s
 
 typedef void (*instruct_f)(stack_t **stack, unsigned int line_number);
 
+/**typedef struct monty_s
+{
+	char **buf;
+}monty_t;*/
+
+
 /* monty opcode functions */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
@@ -73,7 +79,7 @@ stack_t *add_dnodeint_end(stack_t **head, const int n);
 void free_dlistint(stack_t *head);
 instruct_f get_opcode(char *line, unsigned int line_number);
 char *parse_line(char *str);
-int exit_monty(stack_t **stack);
+void exit_monty(stack_t **stack);
 int isnumber(char *str);
 
 

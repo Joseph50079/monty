@@ -5,11 +5,11 @@
  * @stack: stack pointer
  */
 
-int exit_monty(stack_t **stack)
+void exit_monty(stack_t **stack)
 {
 	if (*stack != NULL)
 		free_dlistint(*stack);
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -25,9 +25,10 @@ int read_file(char *filename, stack_t **stack)
 	size_t n = 0;
 	char *buf = NULL;
 	instruct_f op_code;
-	char *line_buf;
+	char *token_buf;
 	unsigned int line_number = 1;
 	FILE *file = fopen(filename, "r");
+
 
 	if (!file)
 	{
@@ -37,16 +38,16 @@ int read_file(char *filename, stack_t **stack)
 
 	while ((fd = getline(&buf, &n, file)) != -1)
 	{
-		line_buf = parse_line(buf);
-		if (line_buf == NULL || line_buf[0] == '#')
+		token_buf = parse_line(buf);
+		if (token_buf == NULL || token_buf[0] == '#')
 		{
 			line_number++;
 			continue;
 		}
-		op_code = get_opcode(line_buf, line_number);
+		op_code = get_opcode(token_buf, line_number);
 		if (!op_code)
 		{
-			fprintf(stderr, "Error: Can't open file %s\n", line_buf);
+			fprintf(stderr, "Error: Can't open file %s\n", token_buf);
 			exit_monty(stack);
 		}
 		op_code(stack, line_number);
@@ -56,7 +57,7 @@ int read_file(char *filename, stack_t **stack)
 	free(buf);
 	close = fclose(file);
 	if (close == -1)
-		exit(-1);
+		exit_monty(stack);
 	return (EXIT_SUCCESS);
 }
 
@@ -83,6 +84,7 @@ instruct_f get_opcode(char *line, unsigned int line_number)
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 
