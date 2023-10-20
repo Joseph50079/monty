@@ -38,7 +38,7 @@ void _pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 
 	if (ptr == NULL)
 	{
-		exit_monty(stack);
+		return;
 	}
 	while (ptr != NULL)
 	{
