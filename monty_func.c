@@ -59,7 +59,7 @@ int read_file(char *filename, stack_t **stack)
 	close = fclose(file);
 	if (close == -1)
 		exit_monty(stack);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 

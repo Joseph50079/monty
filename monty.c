@@ -19,6 +19,7 @@ int main(int ac, char **argv)
 	}
 
 	read_file(argv[1], &stack);
-	exit_monty(&stack);
+	if (stack != NULL)
+		free_dlistint(stack);
 	return (0);
 }
