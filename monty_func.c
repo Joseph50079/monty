@@ -118,7 +118,7 @@ char *parse_line(char *str)
 	{
 		return (NULL);
 	}
-	token = strtok(str, "\n\t()[]{}<> ");
+	token = strtok(str, "\n\t[]{}<> ");
 
 	return (token);
 }
