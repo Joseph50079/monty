@@ -6,8 +6,7 @@
  * @line_number: line number in opcode occurance
  */
 
-void _add(stack_t **stack, unsigned int line_number
-)
+void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *ptr = *stack;
 	int sum, temp;
@@ -30,9 +29,10 @@ void _add(stack_t **stack, unsigned int line_number
  * @line_number: line of opcode occurance
  */
 
-void _nop(stack_t **stack UNUSED, unsigned int line_number UNUSED)
+void _nop(stack_t **stack, unsigned int line_number)
 {
-	;
+	(void)stack;
+	(void)line_number;
 }
 
 /**
@@ -93,7 +93,7 @@ void _div(stack_t **stack, unsigned int line_number)
  * @line_number: line of oopcode position
  */
 
- void _mul(stack_t **stack, unsigned int line_number)
+void _mul(stack_t **stack, unsigned int line_number)
 {
 	stack_t *ptr = *stack;
 	int sum, temp;
@@ -103,7 +103,7 @@ void _div(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		exit_monty(stack);
 	}
-	
+
 	temp = ptr->n;
 	sum = ptr->next->n * temp;
 	ptr = ptr->next;

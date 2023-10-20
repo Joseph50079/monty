@@ -16,6 +16,7 @@ void exit_monty(stack_t **stack)
  * read_file - function reads files and the stack
  * @filename: path of file
  * @stack: read from the top of the stack
+ * Return: 0
  */
 
 int read_file(char *filename, stack_t **stack)

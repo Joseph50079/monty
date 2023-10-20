@@ -6,23 +6,23 @@
  * @line_number: position wweeree opcode occurs
  */
 
- void _mod(stack_t **stack, unsigned int line_number)
- {
-    stack_t *ptr = *stack;
-    int sum, temp;
+void _mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr = *stack;
+	int sum, temp;
 
-    if (ptr == NULL || ptr->next == NULL)
-    {
-        fprintf(stderr,"L%d: can't mod, stack too short\n", line_number);
-        exit_monty(stack);
-    }
-    if (ptr->n == 0 || ptr->next->n == 0)
-    {
-        fprintf(stderr, "L%d: division by zero\n", line_number);
-	exit_monty(stack);
-    }
+	if (ptr == NULL || ptr->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		exit_monty(stack);
+	}
+	if (ptr->n == 0 || ptr->next->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit_monty(stack);
+	}
 
-    	temp = ptr->n;
+	temp = ptr->n;
 	sum = ptr->next->n % temp;
 	ptr = ptr->next;
 	ptr->n = sum;
@@ -57,7 +57,9 @@ void _pchar(stack_t **stack, unsigned int line_number)
 
 
 /**
- * _pstr - 
+ * _pstr - char print stack elements
+ * @stack: node head ptr
+ * @line_number: line number
  */
 
 void _pstr(stack_t **stack, unsigned int line_number)
@@ -68,7 +70,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 
 	if (stack)
 	{
-		while(ptr && ptr->n > 0 && ptr->n < 128)
+		while (ptr && ptr->n > 0 && ptr->n < 128)
 		{
 			putchar(ptr->n);
 			ptr = ptr->next;
