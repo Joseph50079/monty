@@ -68,7 +68,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 
 	if (stack)
 	{
-		while(ptr && ptr->n >= 0 && ptr->n < 128)
+		while(ptr && ptr->n > 0 && ptr->n < 128)
 		{
 			putchar(ptr->n);
 			ptr = ptr->next;
