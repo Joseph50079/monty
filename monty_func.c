@@ -87,6 +87,7 @@ instruct_f get_opcode(char *line, unsigned int line_number)
 		{"mul", _mul},
 		{"pchar", _pchar},
 		{"pstr", _pstr},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
