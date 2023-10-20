@@ -54,3 +54,25 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	putchar(ptr->n);
 	putchar('\n');
 }
+
+
+/**
+ * _pstr - 
+ */
+
+void _pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *ptr = *stack;
+
+	(void)line_number;
+
+	if (stack)
+	{
+		while(ptr && ptr->n >= 0 && ptr->n < 128)
+		{
+			putchar(ptr->n);
+			ptr = ptr->next;
+		}
+	}
+	putchar('\n');
+}
