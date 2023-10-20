@@ -52,7 +52,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 		exit_monty(stack);
 	}
 	temp = ptr->n;
-	sum = ptr->next->n / temp;
+	sum = ptr->next->n - temp;
 	ptr = ptr->next;
 	ptr->n = sum;
 	_pop(stack, line_number);
